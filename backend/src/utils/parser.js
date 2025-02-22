@@ -1,26 +1,24 @@
 const axios = require('axios');
-const cheerio = require('cheerio');
 
 async function parseCryptoData() {
   try {
-    const url = 'https://coinmarketcap.com/';
+    const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1';
     const { data } = await axios.get(url);
-    const $ = cheerio.load(data);
 
-    const cryptos = [];
-    $('tr.cmc-table-row').each((i, element) => {
-      const name = $(element).find('.cmc-table__column-name a').text().trim();
-      const price = $(element).find('.cmc-table__cell--sort-by__price span').text().trim();
-      if (name && price) {
-        cryptos.push({ id: name.toLowerCase(), name, price });
-      }
-    });
+    // Преобразуем данные в нужный формат
+    const cryptos = data.map((coin) => ({
+      id: coin.id,
+      name: coin.name,
+      price: coin.current_price,
+      market_cap: coin.market_cap,
+      change_24h: coin.price_change_percentage_24h,
+    }));
 
     console.log('Parsed cryptos:', cryptos); // Вывод данных в консоль
-    return cryptos.slice(0, 10); // Возвращаем топ-10 криптовалют
+    return cryptos;
   } catch (error) {
-    console.error('Ошибка при парсинге данных:', error.message);
-    throw new Error('Ошибка при парсинге данных: ' + error.message);
+    console.error('Ошибка при запросе к CoinGecko API:', error.message);
+    throw new Error('Ошибка при запросе к CoinGecko API: ' + error.message);
   }
 }
 

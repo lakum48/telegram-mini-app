@@ -2,6 +2,7 @@ const { parseCryptoData } = require('../utils/parser');
 
 exports.getCryptos = async () => {
   const cryptos = await parseCryptoData();
+  console.log('Cryptos from service:', cryptos); // Вывод данных в консоль
   return cryptos;
 };
 
