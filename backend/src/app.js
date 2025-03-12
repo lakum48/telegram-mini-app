@@ -1,77 +1,20 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const searchInput = document.getElementById('search-input');
-  const searchButton = document.getElementById('search-button');
-  const cryptoDetails = document.getElementById('crypto-details');
-  const sortBySelect = document.getElementById('sort-by');
-  const limitInput = document.getElementById('limit');
-  const refreshButton = document.getElementById('refresh-button');
-  const cryptoList = document.getElementById('crypto-list');
+const express = require('express');
+const cors = require('cors');
+const routes = require('./routes');
+const config = require('./config');
 
-  // Функция для загрузки списка криптовалют
-  const loadCryptos = async (sortBy = 'market_cap', limit = 100) => {
-    try {
-      const response = await fetch(`http://localhost:3001/api/cryptos?sortBy=${sortBy}&limit=${limit}`);
-      const data = await response.json();
+const app = express();
 
-      // Очистка списка перед добавлением новых данных
-      cryptoList.innerHTML = '';
+// Middleware
+app.use(cors());
+app.use(express.json());
 
-      // Отображение списка криптовалют
-      data.forEach(coin => {
-        const coinElement = document.createElement('div');
-        coinElement.className = 'crypto-item';
-        coinElement.innerHTML = `
-          <h3>${coin.name} (${coin.symbol.toUpperCase()})</h3>
-          <p>Цена: $${coin.price}</p>
-          <p>Рыночная капитализация: $${coin.market_cap}</p>
-        `;
-        cryptoList.appendChild(coinElement);
-      });
-    } catch (error) {
-      console.error('Ошибка при загрузке данных:', error);
-      cryptoList.innerHTML = '<p>Ошибка при загрузке данных</p>';
-    }
-  };
-
-  // Загрузка всех монет при загрузке страницы
-  loadCryptos();
-
-  // Обновление списка при нажатии на кнопку
-  refreshButton.addEventListener('click', () => {
-    const sortBy = sortBySelect.value;
-    const limit = limitInput.value;
-    loadCryptos(sortBy, limit);
-  });
-
-  // Поиск криптовалюты
-  searchButton.addEventListener('click', async () => {
-    const query = searchInput.value.trim().toLowerCase();
-    if (!query) {
-      alert('Введите название монеты');
-      return;
-    }
-
-    try {
-      const response = await fetch(`http://localhost:3001/api/search?query=${query}`);
-      const data = await response.json();
-
-      // Очистка списка перед добавлением новых данных
-      cryptoList.innerHTML = '';
-
-      // Отображение результатов поиска
-      data.forEach(coin => {
-        const coinElement = document.createElement('div');
-        coinElement.className = 'crypto-item';
-        coinElement.innerHTML = `
-          <h3>${coin.name} (${coin.symbol.toUpperCase()})</h3>
-          <p>Цена: $${coin.price}</p>
-          <p>Рыночная капитализация: $${coin.market_cap}</p>
-        `;
-        cryptoList.appendChild(coinElement);
-      });
-    } catch (error) {
-      console.error('Ошибка при поиске:', error);
-      cryptoList.innerHTML = '<p>Ошибка при поиске</p>';
-    }
-  });
+// Корневой маршрут
+app.get('/', (req, res) => {
+  res.send('Сервер работает!');
 });
+
+// Маршруты
+app.use('/api', routes);
+
+module.exports = app;
