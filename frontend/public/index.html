@@ -9,8 +9,31 @@
 <body>
   <div id="app">
     <h1>Crypto Stats</h1>
-    <input type="text" id="search-input" placeholder="Введите название монеты">
-    <button id="search-button">Поиск</button>
+
+    <!-- Элементы управления для сортировки и лимита -->
+    <div>
+      <label for="sort-by">Сортировать по:</label>
+      <select id="sort-by">
+        <option value="market_cap">Рыночная капитализация</option>
+        <option value="price">Цена</option>
+        <option value="volume">Объем торгов</option>
+      </select>
+
+      <label for="limit">Лимит:</label>
+      <input type="number" id="limit" min="1" max="100" value="10">
+      <button id="refresh-button">Обновить список</button>
+    </div>
+
+    <!-- Поиск криптовалюты -->
+    <div>
+      <input type="text" id="search-input" placeholder="Введите название монеты">
+      <button id="search-button">Поиск</button>
+    </div>
+
+    <!-- Отображение списка криптовалют -->
+    <div id="crypto-list"></div>
+
+    <!-- Отображение деталей криптовалюты -->
     <div id="crypto-details"></div>
   </div>
   <script src="app.js"></script>
