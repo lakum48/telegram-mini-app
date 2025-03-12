@@ -2,34 +2,75 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('search-input');
   const searchButton = document.getElementById('search-button');
   const cryptoDetails = document.getElementById('crypto-details');
+  const sortBySelect = document.getElementById('sort-by');
+  const limitInput = document.getElementById('limit');
+  const refreshButton = document.getElementById('refresh-button');
+  const cryptoList = document.getElementById('crypto-list');
 
+  // Функция для загрузки списка криптовалют
+  const loadCryptos = async () => {
+    const sortBy = sortBySelect.value;
+    const limit = limitInput.value;
+
+    try {
+      const response = await fetch(`http://localhost:3001/api/cryptos?sortBy=${sortBy}&limit=${limit}`);
+      const data = await response.json();
+
+      // Очистка списка перед добавлением новых данных
+      cryptoList.innerHTML = '';
+
+      // Отображение списка криптовалют
+      data.forEach(coin => {
+        const coinElement = document.createElement('div');
+        coinElement.className = 'crypto-item';
+        coinElement.innerHTML = `
+          <h3>${coin.name} (${coin.symbol.toUpperCase()})</h3>
+          <p>Цена: $${coin.price}</p>
+          <p>Рыночная капитализация: $${coin.market_cap}</p>
+        `;
+        cryptoList.appendChild(coinElement);
+      });
+    } catch (error) {
+      console.error('Ошибка при загрузке данных:', error);
+      cryptoList.innerHTML = '<p>Ошибка при загрузке данных</p>';
+    }
+  };
+
+  // Загрузка списка при загрузке страницы
+  loadCryptos();
+
+  // Обновление списка при нажатии на кнопку
+  refreshButton.addEventListener('click', loadCryptos);
+
+  // Поиск криптовалюты
   searchButton.addEventListener('click', async () => {
-    const cryptoId = searchInput.value.trim().toLowerCase();
-    if (!cryptoId) {
-      alert('Введите ID монеты');
+    const query = searchInput.value.trim().toLowerCase();
+    if (!query) {
+      alert('Введите название монеты');
       return;
     }
 
-    // Добавляем задержку в 1 секунду
-    setTimeout(async () => {
-      try {
-        const response = await fetch(`http://localhost:3001/api/cryptos/${cryptoId}`);
-        const data = await response.json();
+    try {
+      const response = await fetch(`http://localhost:3001/api/search?query=${query}`);
+      const data = await response.json();
 
-        if (data) {
-          cryptoDetails.innerHTML = `
-            <h2>${data.name} (${data.symbol.toUpperCase()})</h2>
-            <p>Цена: $${data.price}</p>
-            <p>Рыночная капитализация: $${data.market_cap}</p>
-            <p>Изменение за 24 часа: ${data.change_24h}%</p>
-          `;
-        } else {
-          cryptoDetails.innerHTML = '<p>Монета не найдена</p>';
-        }
-      } catch (error) {
-        console.error('Ошибка при запросе данных:', error);
-        cryptoDetails.innerHTML = '<p>Ошибка при загрузке данных</p>';
-      }
-    }, 1000); // Задержка в 1 секунду
+      // Очистка списка перед добавлением новых данных
+      cryptoList.innerHTML = '';
+
+      // Отображение результатов поиска
+      data.forEach(coin => {
+        const coinElement = document.createElement('div');
+        coinElement.className = 'crypto-item';
+        coinElement.innerHTML = `
+          <h3>${coin.name} (${coin.symbol.toUpperCase()})</h3>
+          <p>Цена: $${coin.price}</p>
+          <p>Рыночная капитализация: $${coin.market_cap}</p>
+        `;
+        cryptoList.appendChild(coinElement);
+      });
+    } catch (error) {
+      console.error('Ошибка при поиске:', error);
+      cryptoList.innerHTML = '<p>Ошибка при поиске</p>';
+    }
   });
 });

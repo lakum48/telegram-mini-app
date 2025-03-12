@@ -4,27 +4,16 @@ const NodeCache = require('node-cache');
 // Создаем кэш с временем жизни 5 минут
 const cache = new NodeCache({ stdTTL: 300 });
 
-exports.getCryptos = async () => {
+exports.getCryptos = async (sortBy = 'market_cap', limit = 10) => {
   try {
-    // Проверяем, есть ли данные в кэше
-    const cachedCryptos = cache.get('cryptos');
-    if (cachedCryptos) {
-      console.log('Данные получены из кэша');
-      return cachedCryptos;
-    }
-
     const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1';
     const { data } = await axios.get(url);
 
-    const cryptos = data.map((coin) => ({
-      id: coin.id,
-      name: coin.name,
-      symbol: coin.symbol,
-    }));
+    // Сортировка по выбранному параметру
+    const sortedCryptos = data.sort((a, b) => b[sortBy] - a[sortBy]);
 
-    // Сохраняем данные в кэше
-    cache.set('cryptos', cryptos);
-    console.log('Данные сохранены в кэше');
+    // Ограничение по количеству
+    const cryptos = sortedCryptos.slice(0, limit);
 
     return cryptos;
   } catch (error) {
@@ -33,15 +22,26 @@ exports.getCryptos = async () => {
   }
 };
 
+exports.searchCryptos = async (query) => {
+  try {
+    const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1';
+    const { data } = await axios.get(url);
+
+    // Поиск по частичному вводу
+    const filteredCryptos = data.filter(coin =>
+      coin.name.toLowerCase().includes(query.toLowerCase()) ||
+      coin.symbol.toLowerCase().includes(query.toLowerCase())
+    );
+
+    return filteredCryptos;
+  } catch (error) {
+    console.error('Ошибка при поиске криптовалют:', error.message);
+    throw new Error('Ошибка при поиске криптовалют: ' + error.message);
+  }
+};
+
 exports.getCryptoDetails = async (id) => {
   try {
-    // Проверяем, есть ли данные в кэше
-    const cachedDetails = cache.get(id);
-    if (cachedDetails) {
-      console.log('Данные получены из кэша');
-      return cachedDetails;
-    }
-
     const url = `https://api.coingecko.com/api/v3/coins/${id}`;
     const { data } = await axios.get(url);
 
@@ -53,10 +53,6 @@ exports.getCryptoDetails = async (id) => {
       market_cap: data.market_data.market_cap.usd,
       change_24h: data.market_data.price_change_percentage_24h,
     };
-
-    // Сохраняем данные в кэше
-    cache.set(id, details);
-    console.log('Данные сохранены в кэше');
 
     return details;
   } catch (error) {
