@@ -14,6 +14,15 @@ exports.getCryptos = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+exports.getCryptoNews = async (req, res) => {
+  try {
+    const { coinId } = req.params;
+    const news = await cryptoService.getCryptoNews(coinId);
+    res.json(news);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 exports.getCryptoDetails = async (req, res) => {
   try {

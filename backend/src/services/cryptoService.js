@@ -28,7 +28,35 @@ exports.getCryptos = async (sortBy = 'market_cap', limit = 10) => {
     throw new Error('Ошибка при запросе к CoinGecko API: ' + error.message);
   }
 };
+exports.getCryptoNews = async (coinId) => {
+  try {
+    const apiKey = '38a3b05c2c88bf50cc029994534440577a04782b'; // Замените на ваш API-ключ от CryptoPanic
+    const url = `https://cryptopanic.com/api/v1/posts/?auth_token=${apiKey}&currencies=${coinId.toUpperCase()}`;
 
+    console.log('Запрос новостей по монете:', coinId);
+    console.log('URL запроса:', url);
+
+    const { data } = await axios.get(url);
+
+    // Проверка наличия данных
+    if (!data.results) {
+      throw new Error('Новости не найдены');
+    }
+
+    // Форматирование данных новостей
+    const news = data.results.map((post) => ({
+      title: post.title,
+      url: post.url,
+      published_at: post.published_at,
+      source: post.source.title,
+    }));
+
+    return news;
+  } catch (error) {
+    console.error('Ошибка при запросе новостей:', error.response ? error.response.data : error.message);
+    throw new Error('Ошибка при запросе новостей: ' + (error.response ? error.response.data : error.message));
+  }
+};
 exports.searchCryptos = async (query) => {
   try {
     const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1';
