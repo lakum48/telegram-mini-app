@@ -62,6 +62,9 @@ function News() {
     }
   };
 
+   
+
+
   const handleLimitChange = (e) => {
     const value = Number(e.target.value);
     if (value > 0) {
@@ -164,5 +167,6 @@ function News() {
     </div>
   );
 }
+
 
 export default News;

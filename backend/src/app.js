@@ -13,6 +13,11 @@ app.use(cors({
 }));
 app.use(express.json());
 
+app.use((req, res, next) => {
+  console.log(`🔍 Получен запрос от: ${req.headers.origin}`);
+  next();
+});
+
 // Корневой маршрут
 app.get('/', (req, res) => {
   res.send('Сервер работает!');

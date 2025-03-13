@@ -8,7 +8,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "axios": "^0.21.1"  
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,6 +38,17 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
-    "jest": "^27.5.1"
+    "jest": "^27.5.1",
+    "babel-jest": "^27.5.1", 
+    "@babel/preset-env": "^7.16.5", 
+    "@babel/preset-react": "^7.16.5" 
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "/node_modules/(?!axios)" 
+    ],
+    "transform": {
+      "^.+\\.(js|jsx)$": "babel-jest" 
+    }
   }
 }

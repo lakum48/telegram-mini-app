@@ -19,8 +19,8 @@ describe('FAQ Component', () => {
   test('Открытие и закрытие 2 вопроса', () => {
     render(<FAQ />);
 
-    const question = screen.getByText('Как я могу обратиться в поддержку?');
-    const answer = screen.getByText('Напишите нам в поддержку через Telegram: @Baskaev_Daniel');
+    const question = screen.getByText('Как обновить данные?');
+    const answer = screen.getByText('Данные обновляются автоматически каждые 10 минут.');
 
     expect(answer).not.toHaveClass('open');
     fireEvent.click(question);
@@ -32,8 +32,8 @@ describe('FAQ Component', () => {
   test('Открытие и закрытие 3 вопроса', () => {
     render(<FAQ />);
 
-    const question = screen.getByText('Как обновить данные?');
-    const answer = screen.getByText('Данные обновляются автоматически каждые 5 минут.');
+    const question = screen.getByText('Как получать новости по криптовалютам?');
+    const answer = screen.getByText('Просто зайдите в раздел "Новости", и все последние обновления будут доступны.');
 
     expect(answer).not.toHaveClass('open');
     fireEvent.click(question);
@@ -45,8 +45,8 @@ describe('FAQ Component', () => {
   test('Открытие и закрытие 4 вопроса', () => {
     render(<FAQ />);
 
-    const question = screen.getByText('Каки монеты я могу отследить?');
-    const answer = screen.getByText('Вы можете отследить и посмотреть новости по любым монетам');
+    const question = screen.getByText('Как связаться с поддержкой?');
+    const answer = screen.getByText('Напишите нашему оператору: @Baskaev_Daniel');
 
     expect(answer).not.toHaveClass('open');
     fireEvent.click(question);
