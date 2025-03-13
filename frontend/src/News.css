@@ -1,0 +1,163 @@
+/* Основные стили */
+.news-page {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  color: #4A90E2;
+}
+
+/* Элементы управления */
+label {
+  margin-right: 10px;
+}
+
+select, input, button {
+  padding: 5px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+}
+
+/* Список криптовалют */
+#crypto-list {
+  margin-top: 20px;
+}
+
+.crypto-item {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.crypto-item h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #4A90E2;
+}
+
+.crypto-item p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Модальное окно */
+.news-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.news-modal-content {
+  background: white;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  text-align: left;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Исправленная кнопка закрытия */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+  background: none;
+  border: none;
+}
+
+.close:hover {
+  color: red;
+}
+
+/* Стили для новостей */
+#news-content {
+  margin-top: 10px;
+}
+
+/* Разделение новостей границами */
+.news-item {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.news-item:last-child {
+  border-bottom: none;
+}
+
+.news-item h4 {
+  margin-bottom: 5px;
+  font-size: 18px;
+  color: #4A90E2;
+}
+
+.news-item p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.news-item a {
+  display: block;
+  margin-top: 5px;
+  color: #4A90E2;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.news-item a:hover {
+  text-decoration: underline;
+}
+
+/* Блокировка прокрутки фона при открытом модальном окне */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* CSS для стрелочек */
+.arrow {
+  display: inline-block;
+  margin-left: 5px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  cursor: pointer;
+}
+
+.arrow.up {
+  border-bottom: 6px solid #000; /* Стрелка вверх */
+}
+
+.arrow.down {
+  border-top: 6px solid #000; /* Стрелка вниз */
+}

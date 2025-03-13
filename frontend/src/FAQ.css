@@ -1,0 +1,49 @@
+/* Стили для FAQ */
+.faq-item {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd; /* Светло-серый цвет для разделителя */
+}
+  
+.faq-question {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #ffffff; /* Белый фон для вопроса */
+    color: #000000; /* Черный цвет текста */
+    border-radius: 8px;
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.faq-question:hover {
+    background: #000000; /* Черный фон при ховере */
+    color: #ffffff; /* Белый текст при ховере */
+}
+  
+.faq-icon {
+    font-size: 14px;
+    transition: transform 0.3s;
+}
+  
+.faq-icon.open {
+    transform: rotate(180deg); /* Стрелочка поворачивается при открытии */
+}
+  
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 10px;
+    font-size: 14px;
+    background: #ffffff; /* Белый фон для ответа */
+    color: #000000; /* Черный цвет текста */
+    border-radius: 0 0 8px 8px;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+}
+  
+.faq-answer.open {
+    max-height: 100px; 
+    padding: 10px; 
+}

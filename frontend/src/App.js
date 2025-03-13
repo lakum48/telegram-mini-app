@@ -1,15 +1,26 @@
 import React, { useState } from 'react';
 import './App.css';
-import Profile from './Profile'; // Импортируем компонент профиля
-import MarketAnalysis from './MarketAnalysis'; // Импортируем компонент анализа рынка
-import Predictions from './Predictions'; // Импортируем компонент прогнозов
-import News from './News'; // Импортируем компонент новостей
-import FAQ from './FAQ'; // Импортируем компонент FAQ
+import Cube from './Cube';
+import Profile from './Profile';
+import MarketAnalysis from './MarketAnalysis';
+import Predictions from './Predictions';
+import News from './News';
+import FAQ from './FAQ';
+
+// Импортируем изображения из папки frontend/src/pic
+import homeIcon from './pic/home.png';
+import marketIcon from './pic/market.png';
+import predictionsIcon from './pic/predictions.png';
+import newsIcon from './pic/news.png';
+import profileIcon from './pic/profile.png';
+import faqIcon from './pic/faq.png';
 
 function App() {
-  const [activeTab, setActiveTab] = useState('market');
+  const [activeTab, setActiveTab] = useState(null);
 
   const renderContent = () => {
+    if (!activeTab) return <Cube />;
+
     switch (activeTab) {
       case 'market':
         return <MarketAnalysis />;
@@ -22,29 +33,36 @@ function App() {
       case 'faq':
         return <FAQ />;
       default:
-        return <MarketAnalysis />;
+        return <Cube />;
     }
   };
 
   return (
     <div className="app">
-      <header>
-        <h1>Crypto Analyst Bot</h1>
-        <p>Получайте актуальные данные о криптовалютах</p>
-      </header>
-      <nav>
-        <button onClick={() => setActiveTab('market')}>Анализ рынка</button>
-        <button onClick={() => setActiveTab('predictions')}>Прогнозы</button>
-        <button onClick={() => setActiveTab('news')}>Новости</button>
-        <button onClick={() => setActiveTab('profile')}>Профиль</button>
-        <button onClick={() => setActiveTab('faq')}>FAQ</button> {/* Новая кнопка */}
-      </nav>
-      <main>
-        {renderContent()}
-      </main>
-      <footer>
-        <p>© 2025 Crypto Analyst Bot. Все права защищены.</p>
-      </footer>
+      <div className="landing-page">
+        <main>{renderContent()}</main>
+
+        <nav className="bottom-navbar">
+          <button onClick={() => setActiveTab(null)}>
+            <img src={homeIcon} alt="Home" />
+          </button>
+          <button onClick={() => setActiveTab('market')}>
+            <img src={marketIcon} alt="Market" />
+          </button>
+          <button onClick={() => setActiveTab('predictions')}>
+            <img src={predictionsIcon} alt="Predictions" />
+          </button>
+          <button onClick={() => setActiveTab('news')}>
+            <img src={newsIcon} alt="News" />
+          </button>
+          <button onClick={() => setActiveTab('profile')}>
+            <img src={profileIcon} alt="Profile" />
+          </button>
+          <button onClick={() => setActiveTab('faq')}>
+            <img src={faqIcon} alt="FAQ" />
+          </button>
+        </nav>
+      </div>
     </div>
   );
 }

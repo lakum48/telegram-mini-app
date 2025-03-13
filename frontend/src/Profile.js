@@ -1,36 +1,28 @@
 import React from 'react';
+import './Profile.css'; // Подключаем стили
 
 function Profile() {
-  // Получаем данные пользователя из Telegram Web Apps API
   const tg = window.Telegram.WebApp;
-  const user = tg.initDataUnsafe?.user;
+  const user = tg?.initDataUnsafe?.user || null; // Безопасное получение данных пользователя
 
-  // Если данные пользователя недоступны, показываем сообщение
   if (!user) {
     return (
-      <div>
-        <h2>Профиль</h2>
-        <p>Данные пользователя недоступны.</p>
+      <div className="profile-container">
+        <h2 className="profile-title">Профиль</h2>
+        <p className="profile-text">Данные пользователя недоступны</p>
       </div>
     );
   }
 
-  // Отображаем данные пользователя
   return (
-    <div>
-      <h2>Профиль</h2>
-      <div className="profile-info">
-        {user.photo_url && (
-          <img
-            src={user.photo_url}
-            alt="Profile"
-            className="profile-photo"
-          />
-        )}
+    <div className="profile-container">
+      <h2 className="profile-title">Профиль</h2>
+      <div className="profile-card">
+        {user.photo_url && <img className="profile-photo" src={user.photo_url} alt="Фото профиля" />}
         <div className="profile-details">
-          <p><strong>Имя:</strong> {user.first_name}</p>
-          {user.last_name && <p><strong>Фамилия:</strong> {user.last_name}</p>}
-          {user.username && <p><strong>Username:</strong> @{user.username}</p>}
+          <p className="profile-text"><strong>Имя:</strong> <span className="highlighted-text">{user.first_name}</span></p>
+          {user.last_name && <p className="profile-text"><strong>Фамилия:</strong> <span className="highlighted-text">{user.last_name}</span></p>}
+          {user.username && <p className="profile-text"><strong>Юзернейм:</strong> <span className="highlighted-text">@{user.username}</span></p>}
         </div>
       </div>
     </div>
