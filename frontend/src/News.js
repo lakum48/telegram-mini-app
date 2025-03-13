@@ -10,19 +10,17 @@ function News() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [limit, setLimit] = useState(2);
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortBy, setSortBy] = useState('market_cap'); // По умолчанию сортировка по капитализации
-  const [sortOrder, setSortOrder] = useState('desc'); // По умолчанию сортировка по убыванию
   const searchInputRef = useRef(null);
   const limitInputRef = useRef(null);
 
   useEffect(() => {
     fetchCryptos();
-  }, [limit, sortBy, sortOrder]); 
+  }, [limit]); // Убираем зависимости от сортировки
 
   const fetchCryptos = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`https://trenchantly-sensitive-mara.cloudpub.ru/api/cryptos?sortBy=${sortBy}&sortOrder=${sortOrder}&limit=${limit}`);
+      const response = await axios.get(`https://trenchantly-sensitive-mara.cloudpub.ru/api/cryptos?limit=${limit}`);
       setCryptos(response.data);
     } catch (error) {
       setError('Ошибка при загрузке данных');
@@ -33,7 +31,7 @@ function News() {
 
   const fetchCryptoSearch = async () => {
     if (!searchQuery.trim()) {
-      fetchCryptos(); 
+      fetchCryptos();
       return;
     }
 
@@ -62,9 +60,6 @@ function News() {
     }
   };
 
-   
-
-
   const handleLimitChange = (e) => {
     const value = Number(e.target.value);
     if (value > 0) {
@@ -78,13 +73,7 @@ function News() {
   };
 
   const handleSearchClick = () => {
-    fetchCryptoSearch(); 
-  };
-
-  const handleSortChange = (e) => {
-    const [sortField, order] = e.target.value.split('|');
-    setSortBy(sortField);
-    setSortOrder(order);
+    fetchCryptoSearch();
   };
 
   if (loading) return <p>Загрузка данных...</p>;
@@ -94,6 +83,8 @@ function News() {
     <div className="news-container">
       <h2>Новости криптовалют</h2>
 
+      {/* Текст перед полем ввода поиска */}
+      <p>Введите монету:</p>
       <label htmlFor="crypto-search">Поиск криптовалюты:</label>
       <div className="search-container">
         <input
@@ -107,6 +98,8 @@ function News() {
         <button onClick={handleSearchClick}>ПОИСК</button>
       </div>
 
+      {/* Текст перед полем ввода для ограничения количества */}
+      <p>Количество отображаемых монет:</p>
       <label htmlFor="crypto-limit">Количество монет:</label>
       <input
         type="number"
@@ -117,16 +110,6 @@ function News() {
         min="1"
         step="1"
       />
-
-      <label htmlFor="sort-options">Сортировать по:</label>
-      <select id="sort-options" onChange={handleSortChange} value={`${sortBy}|${sortOrder}`}>
-        <option value="price|asc">Цена (по возрастанию)</option>
-        <option value="price|desc">Цена (по убыванию)</option>
-        <option value="market_cap|asc">Капитализация (по возрастанию)</option>
-        <option value="market_cap|desc">Капитализация (по убыванию)</option>
-        <option value="change_24h|asc">Изменение за 24 часа (по возрастанию)</option>
-        <option value="change_24h|desc">Изменение за 24 часа (по убыванию)</option>
-      </select>
 
       <div className="crypto-list">
         {cryptos.length > 0 ? (
@@ -167,6 +150,5 @@ function News() {
     </div>
   );
 }
-
 
 export default News;

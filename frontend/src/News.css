@@ -2,33 +2,44 @@
 .news-page {
   padding: 20px;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
+  background-color: #000000; /* Черный фон */
+  color: #FFFFFF; /* Белый текст */
 }
 
-h1 {
-  text-align: center;
-  color: #4A90E2;
+h2 {
+  text-align: center; /* Центрируем заголовок */
+  color: #000000; /* Белый заголовок */
 }
 
 /* Элементы управления */
 label {
-  margin-right: 10px;
+  margin-right: -55px;
+  color: #FFFFFF; /* Белый текст для меток */
 }
 
-select, input, button {
+/* Место для ввода текста (поля ввода и кнопки) сдвигаем влево */
+select, input {
   padding: 5px;
-  margin-right: 10px;
+  margin-right: 5px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 2px solid #000000; /* Черная рамка */
+  background-color: #ffffff; /* Светлый фон для полей */
+  color: #000000; /* Черный текст для полей */
+  display: block; /* Убираем inline-выравнивание */
+  margin-left: 0; /* Сдвигаем влево */
+  width: 96%; /* Разрешаем полям занимать всю доступную ширину */
 }
 
+/* Кнопка */
 button {
-  color: rgb(0, 0, 0);
+  color: rgb(1, 0, 0); /* Белый текст на кнопке */
+  background-color: #ffffff; /* Светлый фон */
   cursor: pointer;
-  border: none;
+  border: 2px solid #000000; /* Черная рамка */
   padding: 8px 16px;
   border-radius: 5px;
+  display: block; /* Кнопка на всю ширину */
+  margin-left: 0; /* Сдвигаем влево */
 }
 
 /* Список криптовалют */
@@ -37,9 +48,10 @@ button {
 }
 
 .crypto-item {
-  background: white;
+  background: #fafafa; /* Светлый фон */
   padding: 15px;
   border-radius: 8px;
+  border: 1px solid #000000; /* Черная рамка */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
 }
@@ -47,13 +59,13 @@ button {
 .crypto-item h3 {
   margin: 0;
   font-size: 18px;
-  color: #4A90E2;
+  color: #000000; /* Черный цвет для заголовков */
 }
 
 .crypto-item p {
   margin: 5px 0;
   font-size: 14px;
-  color: #666;
+  color: #000000; /* Черный текст */
 }
 
 /* Модальное окно */
@@ -63,7 +75,7 @@ button {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(255, 255, 255, 0.7); /* Полупрозрачный фон */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,43 +83,39 @@ button {
 }
 
 .news-modal-content {
-  background: white;
+  background: #fbfafa; /* Светлый фон */
   padding: 20px;
   width: 90%;
   max-width: 600px;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid #000000; /* Черная рамка */
+  box-shadow: 0 5px 7px rgba(0, 0, 0, 0.3);
   position: relative;
   text-align: left;
   max-height: 80vh;
   overflow-y: auto;
 }
 
-/* Исправленная кнопка закрытия */
+/* Кнопка закрытия */
 .close {
   position: absolute;
   top: 10px;
   right: 15px;
   font-size: 24px;
   cursor: pointer;
-  color: #333;
+  color: #060404; /* Черный цвет для кнопки закрытия */
   background: none;
   border: none;
 }
 
 .close:hover {
-  color: red;
-}
-
-/* Стили для новостей */
-#news-content {
-  margin-top: 10px;
+  color: #FF0000; /* Красный при наведении */
 }
 
 /* Разделение новостей границами */
 .news-item {
   padding: 15px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 15px solid #000000; /* Черная граница */
 }
 
 .news-item:last-child {
@@ -117,19 +125,19 @@ button {
 .news-item h4 {
   margin-bottom: 5px;
   font-size: 18px;
-  color: #4A90E2;
+  color: #0d0303; /* Темный цвет для заголовков */
 }
 
 .news-item p {
   margin: 5px 0;
   font-size: 14px;
-  color: #666;
+  color: #060000; /* Светлый текст */
 }
 
 .news-item a {
   display: block;
   margin-top: 5px;
-  color: #4A90E2;
+  color: #000000; /* Черный цвет для ссылок */
   text-decoration: none;
   font-weight: bold;
 }
@@ -143,7 +151,7 @@ body.modal-open {
   overflow: hidden;
 }
 
-/* CSS для стрелочек */
+/* Стрелки */
 .arrow {
   display: inline-block;
   margin-left: 5px;
@@ -155,9 +163,44 @@ body.modal-open {
 }
 
 .arrow.up {
-  border-bottom: 6px solid #000; /* Стрелка вверх */
+  border-bottom: 6px solid #0d0606; /* Белая стрелка вверх */
 }
 
 .arrow.down {
-  border-top: 6px solid #000; /* Стрелка вниз */
+  border-top: 6px solid #0a0303; /* Белая стрелка вниз */
+}
+
+/* Список криптовалют */
+.crypto-list {
+  margin-top: 20px;
+  max-height: 400px; /* Ограничиваем высоту */
+  overflow-y: auto; /* Добавляем вертикальную прокрутку */
+}
+
+/* Стили для криптовалют */
+.crypto-item {
+  background: rgb(255, 255, 255); /* Светлый фон */
+  padding: 15px;
+  border-radius: 8px;
+  border: 3px solid #000000; /* Черная рамка */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+/* Текст перед полем ввода поиска */
+p {
+  font-size: 16px; /* Размер шрифта */
+  font-weight: bold; /* Полужирный текст */
+  color: #000000; /* Белый цвет текста */
+  margin-bottom: 1px; /* Отступ снизу */
+  text-align: left; /* Выравнивание текста по левому краю */
+}
+
+/* Текст перед полем ввода для ограничения количества */
+p {
+  font-size: 16px; /* Размер шрифта */
+  font-weight: bold; /* Полужирный текст */
+  color: #000000; /* Белый цвет текста */
+  margin-bottom: 1px; /* Отступ снизу */
+  text-align: left; /* Выравнивание текста по левому краю */
 }
