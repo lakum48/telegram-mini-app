@@ -11,7 +11,7 @@ bot.on('message', async (msg) => {
   const text = msg.text; 
 
   if(text === '/start') {
-    await bot.sendMessage(chatId, 'Приветствую тебя в нашем боте Крипто-Аналитике !',{
+    await bot.sendMessage(chatId, 'Приветствую тебя в нашем боте Куб-Аналитике !',{
       reply_murkup:{
         inline_keyboard:[
           [{text:'Сайт', web_app: {url: webAppUrl}}]

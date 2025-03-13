@@ -6,7 +6,11 @@ const config = require('./config');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000', // Разрешить запросы с фронтенда
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Разрешенные методы
+  credentials: true // Разрешить передачу куки и заголовков авторизации
+}));
 app.use(express.json());
 
 // Корневой маршрут
