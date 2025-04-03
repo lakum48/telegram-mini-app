@@ -6,6 +6,13 @@ const cache = new NodeCache({ stdTTL: 300 });
 
 exports.getCryptos = async (sortBy = 'market_cap', limit = 10) => {
   try {
+    const cacheKey = `cryptos_${sortBy}_${limit}`;
+    const cachedData = cache.get(cacheKey);
+    
+    if (cachedData) {
+      return cachedData;
+    }
+
     const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1';
     const { data } = await axios.get(url);
 
@@ -17,24 +24,30 @@ exports.getCryptos = async (sortBy = 'market_cap', limit = 10) => {
       id: coin.id,
       name: coin.name,
       symbol: coin.symbol,
-      price: coin.current_price, // Исправлено: current_price вместо price
-      market_cap: coin.market_cap, // Исправлено: market_cap вместо market_cap
-      change_24h: coin.price_change_percentage_24h, // Исправлено: price_change_percentage_24h вместо change_24h
+      price: coin.current_price,
+      market_cap: coin.market_cap,
+      change_24h: coin.price_change_percentage_24h,
     }));
 
+    cache.set(cacheKey, cryptos);
     return cryptos;
   } catch (error) {
     console.error('Ошибка при запросе к CoinGecko API:', error.message);
     throw new Error('Ошибка при запросе к CoinGecko API: ' + error.message);
   }
 };
+
 exports.getCryptoNews = async (coinId) => {
   try {
-    const apiKey = '38a3b05c2c88bf50cc029994534440577a04782b'; // Замените на ваш API-ключ от CryptoPanic
-    const url = `https://cryptopanic.com/api/v1/posts/?auth_token=${apiKey}&currencies=${coinId.toUpperCase()}`;
+    const cacheKey = `news_${coinId}`;
+    const cachedData = cache.get(cacheKey);
+    
+    if (cachedData) {
+      return cachedData;
+    }
 
-    console.log('Запрос новостей по монете:', coinId);
-    console.log('URL запроса:', url);
+    const apiKey = '38a3b05c2c88bf50cc029994534440577a04782b';
+    const url = `https://cryptopanic.com/api/v1/posts/?auth_token=${apiKey}&currencies=${coinId.toUpperCase()}`;
 
     const { data } = await axios.get(url);
 
@@ -51,22 +64,31 @@ exports.getCryptoNews = async (coinId) => {
       source: post.source.title,
     }));
 
+    cache.set(cacheKey, news);
     return news;
   } catch (error) {
     console.error('Ошибка при запросе новостей:', error.response ? error.response.data : error.message);
     throw new Error('Ошибка при запросе новостей: ' + (error.response ? error.response.data : error.message));
   }
 };
+
 exports.searchCryptos = async (query) => {
   try {
+    const cacheKey = `search_${query.toLowerCase()}`;
+    const cachedData = cache.get(cacheKey);
+    
+    if (cachedData) {
+      return cachedData;
+    }
+
     const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1';
     const { data } = await axios.get(url);
 
     // Поиск по частичному вводу (название или символ)
     const filteredCryptos = data
       .filter(coin =>
-        coin.name.toLowerCase().includes(query.toLowerCase()) || // Поиск по названию
-        coin.symbol.toLowerCase().includes(query.toLowerCase()) // Поиск по символу
+        coin.name.toLowerCase().includes(query.toLowerCase()) ||
+        coin.symbol.toLowerCase().includes(query.toLowerCase())
       )
       .map(coin => ({
         id: coin.id,
@@ -77,6 +99,7 @@ exports.searchCryptos = async (query) => {
         change_24h: coin.price_change_percentage_24h,
       }));
 
+    cache.set(cacheKey, filteredCryptos);
     return filteredCryptos;
   } catch (error) {
     console.error('Ошибка при поиске криптовалют:', error.message);
@@ -86,6 +109,13 @@ exports.searchCryptos = async (query) => {
 
 exports.getCryptoDetails = async (id) => {
   try {
+    const cacheKey = `details_${id}`;
+    const cachedData = cache.get(cacheKey);
+    
+    if (cachedData) {
+      return cachedData;
+    }
+
     const url = `https://api.coingecko.com/api/v3/coins/${id}`;
     const { data } = await axios.get(url);
 
@@ -98,6 +128,7 @@ exports.getCryptoDetails = async (id) => {
       change_24h: data.market_data.price_change_percentage_24h,
     };
 
+    cache.set(cacheKey, details);
     return details;
   } catch (error) {
     console.error('Ошибка при запросе данных о монете:', error.message);
