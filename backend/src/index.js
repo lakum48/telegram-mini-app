@@ -1,23 +1,39 @@
 const TelegramBot = require('node-telegram-bot-api');
-
 const token = '7713849891:AAF0ZqFq-LTkbeMKqHPFq_-h0wZjXR-K58Y';
-const webAppUrl = 'https://fallaciously-eloquent-tenpounder.cloudpub.ru/'
-
 const bot = new TelegramBot(token, {polling: true});
 
+// Хранилище чатов (в реальном приложении используйте БД)
+const activeChats = {};
 
 bot.on('message', async (msg) => {
   const chatId = msg.chat.id;
-  const text = msg.text; 
-
-  if(text === '/start') {
-    await bot.sendMessage(chatId, 'Приветствую тебя в нашем боте Куб-Аналитике !',{
-      reply_murkup:{
-        inline_keyboard:[
-          [{text:'Сайт', web_app: {url: webAppUrl}}]
+  
+  if (msg.text === '/start') {
+    await bot.sendMessage(chatId, 'Добро пожаловать в чат поддержки!', {
+      reply_markup: {
+        inline_keyboard: [
+          [{text: 'Открыть чат', web_app: {url: 'https://ваш-сайт.ru'}}]
         ]
       }
+    });
+  }
+});
 
-    })
+// Обработка данных из WebApp
+bot.on('web_app_data', async (msg) => {
+  const data = JSON.parse(msg.web_app_data.data);
+  
+  if (data.type === 'new_message') {
+    const adminId = 'ВАШ_ID_В_TELEGRAM'; // Замените на ваш ID
+    const userInfo = `Пользователь: ${data.username} (ID: ${data.userId})`;
+    
+    // Сохраняем чат
+    activeChats[data.userId] = {
+      username: data.username,
+      chatId: msg.chat.id
+    };
+    
+    // Отправляем уведомление админу
+    await bot.sendMessage(adminId, `✉️ Новое сообщение\n${userInfo}\n\n${data.message}`);
   }
 });

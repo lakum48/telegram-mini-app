@@ -1,0 +1,108 @@
+/* Predictions.css - Черно-белая тема с улучшенной адаптивностью */
+
+.predictions-container {
+    padding: 15px;
+    max-width: 100%;
+    margin: 0 auto;
+    color: #000000;
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+  }
+  
+  .predictions-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: clamp(1.5rem, 4vw, 1.8rem);
+    font-weight: bold;
+    color: #000000;
+    word-break: break-word;
+  }
+  
+  .predictions-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+  }
+  
+  .predictions-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #000000;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+  }
+  
+  .predictions-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #000000;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    box-sizing: border-box;
+  }
+  
+  .predictions-button {
+    padding: 12px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: clamp(1rem, 3vw, 1.1rem);
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .predictions-error {
+    color: #ff0000;
+    background-color: #ffeeee;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 20px 0;
+    border: 1px solid #ff0000;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+  }
+  
+  /* Улучшенные медиа-запросы */
+  @media (max-width: 600px) {
+    .predictions-form {
+      padding: 12px;
+      gap: 12px;
+    }
+    
+    .predictions-input {
+      padding: 8px;
+    }
+    
+    .predictions-button {
+      padding: 10px;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .predictions-container {
+      padding: 10px;
+    }
+    
+    .predictions-form {
+      padding: 10px;
+    }
+    
+    .predictions-label {
+      font-size: 0.85rem;
+    }
+  }

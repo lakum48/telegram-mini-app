@@ -14,7 +14,8 @@
         "dotenv": "^16.4.7",
         "express": "^4.21.2",
         "node-cache": "^5.1.2",
-        "node-telegram-bot-api": "^0.66.0"
+        "node-telegram-bot-api": "^0.66.0",
+        "ws": "^8.18.1"
     },
     "devDependencies": {
         "nodemon": "^3.0.2"

@@ -1,20 +1,22 @@
 const app = require('./app');
 const config = require('./config');
-
 const cors = require('cors');
+const { parseAndSaveCryptoData, startAutoUpdate } = require('./parser');
+startAutoUpdate(5, 100); // Будет обновлять данные каждые 10 минут
 
 const allowedOrigins = [
-  'http://localhost:3000', // Разрешаем запросы с локального фронтенда
-  'https://web.telegram.org', // Добавляем Telegram Web
-  'https://web.telegram.org/k/', // Для безопасности укажем конкретный поддомен
-  'https://t.me', // Добавьте этот домен
-  'https://your-mini-app-domain.com' // Если у вас есть кастомный домен для Mini App
+  'http://localhost:3000',
+  'https://web.telegram.org',
+  'https://web.telegram.org/k/',
+  'https://t.me',
+  'https://your-mini-app-domain.com',
+  'http://localhost:55120',
+  'https://fallaciously-eloquent-tenpounder.cloudpub.ru' // ваш домен
 ];
 
 
 app.use(cors({ 
   origin: function(origin, callback) {
-    // Если origin пустой (например, для запросов с cURL или Postman), то разрешить доступ
     if (!origin || allowedOrigins.includes(origin)) {
       return callback(null, true);
     } else {

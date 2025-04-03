@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
+import React, { useState, useRef, useEffect } from 'react';
 import './News.css';
+import cryptoData from './cr.json';
 
 function News() {
   const [cryptos, setCryptos] = useState([]);
@@ -9,36 +9,40 @@ function News() {
   const [selectedNews, setSelectedNews] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [limit, setLimit] = useState(2);
+  const [tempLimit, setTempLimit] = useState(2); // Добавляем временное состояние для лимита
   const [searchQuery, setSearchQuery] = useState('');
   const searchInputRef = useRef(null);
   const limitInputRef = useRef(null);
 
+  // Загружаем данные из JSON при монтировании компонента и при изменении лимита
   useEffect(() => {
-    fetchCryptos();
-  }, [limit]); // Убираем зависимости от сортировки
-
-  const fetchCryptos = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`https://trenchantly-sensitive-mara.cloudpub.ru/api/cryptos?limit=${limit}`);
-      setCryptos(response.data);
+      const limitedData = cryptoData.slice(0, limit);
+      setCryptos(limitedData);
     } catch (error) {
       setError('Ошибка при загрузке данных');
     } finally {
       setLoading(false);
     }
-  };
+  }, [limit]);
 
-  const fetchCryptoSearch = async () => {
+  // Обработка поиска
+  const fetchCryptoSearch = () => {
     if (!searchQuery.trim()) {
-      fetchCryptos();
+      const limitedData = cryptoData.slice(0, limit);
+      setCryptos(limitedData);
       return;
     }
 
     setLoading(true);
     try {
-      const response = await axios.get(`https://trenchantly-sensitive-mara.cloudpub.ru/api/search?query=${searchQuery}`);
-      setCryptos(response.data);
+      const query = searchQuery.toLowerCase();
+      const filteredData = cryptoData.filter(coin => 
+        coin.name.toLowerCase().includes(query) || 
+        coin.symbol.toLowerCase().includes(query)
+      ).slice(0, limit);
+      setCryptos(filteredData);
     } catch (error) {
       setError('Ошибка при поиске данных');
     } finally {
@@ -46,26 +50,29 @@ function News() {
     }
   };
 
-  const fetchNews = async (coinId) => {
-    console.log(`Запрос новостей для криптовалюты с ID: ${coinId}`);
-    try {
-      const response = await axios.get(`https://trenchantly-sensitive-mara.cloudpub.ru/api/news/${coinId}`);
-      console.log('Получены новости:', response.data);
-      setSelectedNews(response.data);
-      setIsModalOpen(true);
-    } catch (error) {
-      console.error('Ошибка при получении новостей:', error);
-      setSelectedNews([]);
-      setIsModalOpen(true);
-    }
+  // Заглушка для получения новостей
+  const fetchNews = (coinId) => {
+    const mockNews = [
+      {
+        title: `Новости о ${cryptoData.find(c => c.id === coinId)?.name || 'криптовалюте'}`,
+        source: "CryptoNews",
+        published_at: new Date().toISOString(),
+        url: "https://example.com"
+      }
+    ];
+    setSelectedNews(mockNews);
+    setIsModalOpen(true);
   };
 
   const handleLimitChange = (e) => {
     const value = Number(e.target.value);
     if (value > 0) {
-      setLimit(value);
+      setTempLimit(value); // Сохраняем во временное состояние
     }
-    setTimeout(() => limitInputRef.current?.focus(), 0);
+  };
+
+  const applyLimit = () => {
+    setLimit(tempLimit); // Применяем временное значение к основному лимиту
   };
 
   const handleSearchChange = (e) => {
@@ -83,7 +90,6 @@ function News() {
     <div className="news-container">
       <h2>Новости криптовалют</h2>
 
-      {/* Текст перед полем ввода поиска */}
       <p>Введите монету:</p>
       <label htmlFor="crypto-search">Поиск криптовалюты:</label>
       <div className="search-container">
@@ -98,18 +104,20 @@ function News() {
         <button onClick={handleSearchClick}>ПОИСК</button>
       </div>
 
-      {/* Текст перед полем ввода для ограничения количества */}
       <p>Количество отображаемых монет:</p>
       <label htmlFor="crypto-limit">Количество монет:</label>
-      <input
-        type="number"
-        id="crypto-limit"
-        value={limit}
-        onChange={handleLimitChange}
-        ref={limitInputRef}
-        min="1"
-        step="1"
-      />
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <input
+          type="number"
+          id="crypto-limit"
+          value={tempLimit}
+          onChange={handleLimitChange}
+          ref={limitInputRef}
+          min="1"
+          step="1"
+        />
+        <button onClick={applyLimit}>Применить</button>
+      </div>
 
       <div className="crypto-list">
         {cryptos.length > 0 ? (

@@ -9,7 +9,7 @@ import FAQ from './FAQ';
 
 // Импортируем изображения из папки frontend/src/pic
 import homeIcon from './pic/home.png';
-import marketIcon from './pic/market.png';
+import marketIcon from './pic/chat.png';
 import predictionsIcon from './pic/predictions.png';
 import newsIcon from './pic/news.png';
 import profileIcon from './pic/profile.png';

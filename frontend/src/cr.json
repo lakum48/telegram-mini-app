@@ -1,0 +1,162 @@
+[
+  {
+    "id": "bitcoin",
+    "name": "Bitcoin",
+    "symbol": "btc",
+    "price": 81929,
+    "market_cap": 1627440904034,
+    "change_24h": -4.30583
+  },
+  {
+    "id": "ethereum",
+    "name": "Ethereum",
+    "symbol": "eth",
+    "price": 1784.87,
+    "market_cap": 215595311542,
+    "change_24h": -5.47906
+  },
+  {
+    "id": "tether",
+    "name": "Tether",
+    "symbol": "usdt",
+    "price": 0.999484,
+    "market_cap": 144170169229,
+    "change_24h": -0.0612
+  },
+  {
+    "id": "ripple",
+    "name": "XRP",
+    "symbol": "xrp",
+    "price": 2.05,
+    "market_cap": 119381683397,
+    "change_24h": -3.79427
+  },
+  {
+    "id": "binancecoin",
+    "name": "BNB",
+    "symbol": "bnb",
+    "price": 588.2,
+    "market_cap": 85845148840,
+    "change_24h": -1.62684
+  },
+  {
+    "id": "usd-coin",
+    "name": "USDC",
+    "symbol": "usdc",
+    "price": 0.999893,
+    "market_cap": 60807847055,
+    "change_24h": -0.00698
+  },
+  {
+    "id": "solana",
+    "name": "Solana",
+    "symbol": "sol",
+    "price": 115.52,
+    "market_cap": 59299770267,
+    "change_24h": -10.91588
+  },
+  {
+    "id": "dogecoin",
+    "name": "Dogecoin",
+    "symbol": "doge",
+    "price": 0.158418,
+    "market_cap": 23588233424,
+    "change_24h": -8.15218
+  },
+  {
+    "id": "cardano",
+    "name": "Cardano",
+    "symbol": "ada",
+    "price": 0.640528,
+    "market_cap": 23056575035,
+    "change_24h": -5.48392
+  },
+  {
+    "id": "tron",
+    "name": "TRON",
+    "symbol": "trx",
+    "price": 0.235719,
+    "market_cap": 22398067907,
+    "change_24h": -0.40709
+  },
+  {
+    "id": "staked-ether",
+    "name": "Lido Staked Ether",
+    "symbol": "steth",
+    "price": 1782.86,
+    "market_cap": 16724371138,
+    "change_24h": -5.89947
+  },
+  {
+    "id": "wrapped-bitcoin",
+    "name": "Wrapped Bitcoin",
+    "symbol": "wbtc",
+    "price": 81839,
+    "market_cap": 10551024759,
+    "change_24h": -4.0499
+  },
+  {
+    "id": "the-open-network",
+    "name": "Toncoin",
+    "symbol": "ton",
+    "price": 3.59,
+    "market_cap": 8880121062,
+    "change_24h": -8.87231
+  },
+  {
+    "id": "leo-token",
+    "name": "LEO Token",
+    "symbol": "leo",
+    "price": 9.39,
+    "market_cap": 8672617275,
+    "change_24h": 1.11497
+  },
+  {
+    "id": "chainlink",
+    "name": "Chainlink",
+    "symbol": "link",
+    "price": 12.65,
+    "market_cap": 8078789976,
+    "change_24h": -8.22841
+  },
+  {
+    "id": "usds",
+    "name": "USDS",
+    "symbol": "usds",
+    "price": 0.999895,
+    "market_cap": 7994195743,
+    "change_24h": 0.00125
+  },
+  {
+    "id": "stellar",
+    "name": "Stellar",
+    "symbol": "xlm",
+    "price": 0.257795,
+    "market_cap": 7939948011,
+    "change_24h": -3.85866
+  },
+  {
+    "id": "wrapped-steth",
+    "name": "Wrapped stETH",
+    "symbol": "wsteth",
+    "price": 2137.02,
+    "market_cap": 7669325229,
+    "change_24h": -5.56821
+  },
+  {
+    "id": "avalanche-2",
+    "name": "Avalanche",
+    "symbol": "avax",
+    "price": 17.98,
+    "market_cap": 7461709522,
+    "change_24h": -6.23578
+  },
+  {
+    "id": "sui",
+    "name": "Sui",
+    "symbol": "sui",
+    "price": 2.21,
+    "market_cap": 7197693852,
+    "change_24h": -10.17206
+  }
+]
