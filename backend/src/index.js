@@ -9,10 +9,10 @@ bot.on('message', async (msg) => {
   const chatId = msg.chat.id;
   
   if (msg.text === '/start') {
-    await bot.sendMessage(chatId, 'Добро пожаловать в чат поддержки!', {
+    await bot.sendMessage(chatId, 'Добро пожаловать на наш сайт!', {
       reply_markup: {
         inline_keyboard: [
-          [{text: 'Открыть чат', web_app: {url: 'http://195.133.48.208:3000/'}}]
+          [{text: 'Открыть сайт', web_app: {url: 'http://195.133.48.208:3000/'}}]
         ]
       }
     });
