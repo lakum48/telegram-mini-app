@@ -1,0 +1,600 @@
+{
+  "timeframe": "1m",
+  "timestamp": "2025-04-04T06:59:39.130612Z",
+  "predictions": [
+    {
+      "symbol": "IOTA/USDT",
+      "decision": "SELL",
+      "confidence": 0.924,
+      "price": 0.1658
+    },
+    {
+      "symbol": "TRX/USDT",
+      "decision": "SELL",
+      "confidence": 0.614,
+      "price": 0.2383
+    },
+    {
+      "symbol": "VET/USDT",
+      "decision": "BUY",
+      "confidence": 0.8402,
+      "price": 0.02178
+    },
+    {
+      "symbol": "BTC/USDT",
+      "decision": "BUY",
+      "confidence": 0.8779,
+      "price": 83065.82
+    },
+    {
+      "symbol": "XLM/USDT",
+      "decision": "BUY",
+      "confidence": 0.6662,
+      "price": 0.2596
+    },
+    {
+      "symbol": "BNB/USDT",
+      "decision": "BUY",
+      "confidence": 0.8761,
+      "price": 594.93
+    },
+    {
+      "symbol": "EOS/USDT",
+      "decision": "SELL",
+      "confidence": 0.8472,
+      "price": 0.8339
+    },
+    {
+      "symbol": "LINK/USDT",
+      "decision": "BUY",
+      "confidence": 0.5768,
+      "price": 12.85
+    },
+    {
+      "symbol": "ETH/USDT",
+      "decision": "BUY",
+      "confidence": 0.6391,
+      "price": 1801.25
+    },
+    {
+      "symbol": "LTC/USDT",
+      "decision": "SELL",
+      "confidence": 0.683,
+      "price": 83.64
+    },
+    {
+      "symbol": "XRP/USDT",
+      "decision": "SELL",
+      "confidence": 0.822,
+      "price": 2.0544
+    },
+    {
+      "symbol": "ETC/USDT",
+      "decision": "BUY",
+      "confidence": 0.661,
+      "price": 16.23
+    },
+    {
+      "symbol": "USDC/USDT",
+      "decision": "BUY",
+      "confidence": 0.6317,
+      "price": 1.0003
+    },
+    {
+      "symbol": "NEO/USDT",
+      "decision": "SELL",
+      "confidence": 0.7552,
+      "price": 4.77
+    },
+    {
+      "symbol": "FET/USDT",
+      "decision": "SELL",
+      "confidence": 0.5303,
+      "price": 0.434
+    },
+    {
+      "symbol": "BCH/USDT",
+      "decision": "SELL",
+      "confidence": 0.9187,
+      "price": 307.8
+    },
+    {
+      "symbol": "EUR/USDT",
+      "decision": "BUY",
+      "confidence": 0.6214,
+      "price": 1.1052
+    },
+    {
+      "symbol": "ATOM/USDT",
+      "decision": "SELL",
+      "confidence": 0.5523,
+      "price": 4.817
+    },
+    {
+      "symbol": "HBAR/USDT",
+      "decision": "SELL",
+      "confidence": 0.7635,
+      "price": 0.16137
+    },
+    {
+      "symbol": "FUN/USDT",
+      "decision": "BUY",
+      "confidence": 0.5497,
+      "price": 0.005417
+    },
+    {
+      "symbol": "ALGO/USDT",
+      "decision": "BUY",
+      "confidence": 0.6099,
+      "price": 0.1814
+    },
+    {
+      "symbol": "NKN/USDT",
+      "decision": "BUY",
+      "confidence": 0.5599,
+      "price": 0.0271
+    },
+    {
+      "symbol": "DOGE/USDT",
+      "decision": "BUY",
+      "confidence": 0.5722,
+      "price": 0.1639
+    },
+    {
+      "symbol": "ADA/USDT",
+      "decision": "SELL",
+      "confidence": 0.9384,
+      "price": 0.6517
+    },
+    {
+      "symbol": "SOL/USDT",
+      "decision": "BUY",
+      "confidence": 0.665,
+      "price": 116.11
+    },
+    {
+      "symbol": "MKR/USDT",
+      "decision": "SELL",
+      "confidence": 0.5048,
+      "price": 1315.0
+    },
+    {
+      "symbol": "DGB/USDT",
+      "decision": "SELL",
+      "confidence": 0.5698,
+      "price": 0.01061
+    },
+    {
+      "symbol": "CRV/USDT",
+      "decision": "BUY",
+      "confidence": 0.7562,
+      "price": 0.5209
+    },
+    {
+      "symbol": "DOT/USDT",
+      "decision": "SELL",
+      "confidence": 0.7155,
+      "price": 4.024
+    },
+    {
+      "symbol": "EGLD/USDT",
+      "decision": "SELL",
+      "confidence": 0.6291,
+      "price": 15.1
+    },
+    {
+      "symbol": "PAXG/USDT",
+      "decision": "SELL",
+      "confidence": 0.5989,
+      "price": 3118.0
+    },
+    {
+      "symbol": "RSR/USDT",
+      "decision": "SELL",
+      "confidence": 0.6014,
+      "price": 0.00662
+    },
+    {
+      "symbol": "AAVE/USDT",
+      "decision": "BUY",
+      "confidence": 0.8304,
+      "price": 150.11
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "decision": "BUY",
+      "confidence": 0.5207,
+      "price": 1.118
+    },
+    {
+      "symbol": "UNI/USDT",
+      "decision": "BUY",
+      "confidence": 0.5679,
+      "price": 5.907
+    },
+    {
+      "symbol": "AVAX/USDT",
+      "decision": "BUY",
+      "confidence": 0.9417,
+      "price": 18.38
+    },
+    {
+      "symbol": "WING/USDT",
+      "decision": "BUY",
+      "confidence": 0.6134,
+      "price": 1.795
+    },
+    {
+      "symbol": "NEAR/USDT",
+      "decision": "BUY",
+      "confidence": 0.6791,
+      "price": 2.506
+    },
+    {
+      "symbol": "FIL/USDT",
+      "decision": "BUY",
+      "confidence": 0.8792,
+      "price": 2.712
+    },
+    {
+      "symbol": "INJ/USDT",
+      "decision": "BUY",
+      "confidence": 0.6922,
+      "price": 8.43
+    },
+    {
+      "symbol": "CAKE/USDT",
+      "decision": "SELL",
+      "confidence": 0.7215,
+      "price": 1.817
+    },
+    {
+      "symbol": "OM/USDT",
+      "decision": "BUY",
+      "confidence": 0.5335,
+      "price": 6.2757
+    },
+    {
+      "symbol": "LINA/USDT",
+      "decision": "SELL",
+      "confidence": 0.6924,
+      "price": 0.000337
+    },
+    {
+      "symbol": "CFX/USDT",
+      "decision": "BUY",
+      "confidence": 0.7433,
+      "price": 0.0807
+    },
+    {
+      "symbol": "PERP/USDT",
+      "decision": "SELL",
+      "confidence": 0.5496,
+      "price": 0.2382
+    },
+    {
+      "symbol": "BURGER/USDT",
+      "decision": "BUY",
+      "confidence": 0.8143,
+      "price": 0.0172
+    },
+    {
+      "symbol": "ICP/USDT",
+      "decision": "BUY",
+      "confidence": 0.6269,
+      "price": 5.145
+    },
+    {
+      "symbol": "MASK/USDT",
+      "decision": "BUY",
+      "confidence": 0.7419,
+      "price": 1.194
+    },
+    {
+      "symbol": "SHIB/USDT",
+      "decision": "BUY",
+      "confidence": 0.724,
+      "price": 1.215e-05
+    },
+    {
+      "symbol": "COMP/USDT",
+      "decision": "SELL",
+      "confidence": 0.5632,
+      "price": 45.3
+    },
+    {
+      "symbol": "RAY/USDT",
+      "decision": "BUY",
+      "confidence": 0.7689,
+      "price": 1.772
+    },
+    {
+      "symbol": "MLN/USDT",
+      "decision": "BUY",
+      "confidence": 0.5673,
+      "price": 10.11
+    },
+    {
+      "symbol": "MBOX/USDT",
+      "decision": "BUY",
+      "confidence": 0.9067,
+      "price": 0.0532
+    },
+    {
+      "symbol": "DYDX/USDT",
+      "decision": "BUY",
+      "confidence": 0.7345,
+      "price": 0.6134
+    },
+    {
+      "symbol": "GALA/USDT",
+      "decision": "SELL",
+      "confidence": 0.822,
+      "price": 0.01502
+    },
+    {
+      "symbol": "RARE/USDT",
+      "decision": "SELL",
+      "confidence": 0.7143,
+      "price": 0.0794
+    },
+    {
+      "symbol": "AUCTION/USDT",
+      "decision": "SELL",
+      "confidence": 0.5369,
+      "price": 13.17
+    },
+    {
+      "symbol": "BNX/USDT",
+      "decision": "SELL",
+      "confidence": 0.6449,
+      "price": 1.7819
+    },
+    {
+      "symbol": "AMP/USDT",
+      "decision": "SELL",
+      "confidence": 0.7275,
+      "price": 0.003973
+    },
+    {
+      "symbol": "VOXEL/USDT",
+      "decision": "SELL",
+      "confidence": 0.9153,
+      "price": 0.0375
+    },
+    {
+      "symbol": "GMT/USDT",
+      "decision": "BUY",
+      "confidence": 0.5975,
+      "price": 0.0455
+    },
+    {
+      "symbol": "ACH/USDT",
+      "decision": "BUY",
+      "confidence": 0.5173,
+      "price": 0.02104
+    },
+    {
+      "symbol": "API3/USDT",
+      "decision": "BUY",
+      "confidence": 0.5401,
+      "price": 0.884
+    },
+    {
+      "symbol": "IMX/USDT",
+      "decision": "SELL",
+      "confidence": 0.5436,
+      "price": 0.457
+    },
+    {
+      "symbol": "BSW/USDT",
+      "decision": "SELL",
+      "confidence": 0.9028,
+      "price": 0.018
+    },
+    {
+      "symbol": "LDO/USDT",
+      "decision": "BUY",
+      "confidence": 0.9276,
+      "price": 0.838
+    },
+    {
+      "symbol": "OP/USDT",
+      "decision": "BUY",
+      "confidence": 0.7949,
+      "price": 0.706
+    },
+    {
+      "symbol": "APT/USDT",
+      "decision": "BUY",
+      "confidence": 0.7048,
+      "price": 4.999
+    },
+    {
+      "symbol": "ARB/USDT",
+      "decision": "BUY",
+      "confidence": 0.7676,
+      "price": 0.3132
+    },
+    {
+      "symbol": "WBTC/USDT",
+      "decision": "SELL",
+      "confidence": 0.8014,
+      "price": 82968.55
+    },
+    {
+      "symbol": "SUI/USDT",
+      "decision": "SELL",
+      "confidence": 0.6139,
+      "price": 2.2036
+    },
+    {
+      "symbol": "PEPE/USDT",
+      "decision": "BUY",
+      "confidence": 0.5797,
+      "price": 6.83e-06
+    },
+    {
+      "symbol": "FLOKI/USDT",
+      "decision": "BUY",
+      "confidence": 0.7964,
+      "price": 5.525e-05
+    },
+    {
+      "symbol": "COMBO/USDT",
+      "decision": "BUY",
+      "confidence": 0.7507,
+      "price": 0.0276
+    },
+    {
+      "symbol": "PENDLE/USDT",
+      "decision": "BUY",
+      "confidence": 0.5313,
+      "price": 3.107
+    },
+    {
+      "symbol": "ARKM/USDT",
+      "decision": "BUY",
+      "confidence": 0.9009,
+      "price": 0.497
+    },
+    {
+      "symbol": "ORDI/USDT",
+      "decision": "SELL",
+      "confidence": 0.6654,
+      "price": 7.32
+    },
+    {
+      "symbol": "SEI/USDT",
+      "decision": "BUY",
+      "confidence": 0.6551,
+      "price": 0.1632
+    },
+    {
+      "symbol": "FDUSD/USDT",
+      "decision": "BUY",
+      "confidence": 0.5735,
+      "price": 0.997
+    },
+    {
+      "symbol": "VANRY/USDT",
+      "decision": "SELL",
+      "confidence": 0.873,
+      "price": 0.0255
+    },
+    {
+      "symbol": "WLD/USDT",
+      "decision": "BUY",
+      "confidence": 0.7019,
+      "price": 0.759
+    },
+    {
+      "symbol": "JTO/USDT",
+      "decision": "BUY",
+      "confidence": 0.6925,
+      "price": 1.955
+    },
+    {
+      "symbol": "1000SATS/USDT",
+      "decision": "BUY",
+      "confidence": 0.9092,
+      "price": 5.3e-05
+    },
+    {
+      "symbol": "BONK/USDT",
+      "decision": "SELL",
+      "confidence": 0.9151,
+      "price": 1.11e-05
+    },
+    {
+      "symbol": "JUP/USDT",
+      "decision": "BUY",
+      "confidence": 0.5276,
+      "price": 0.3932
+    },
+    {
+      "symbol": "STRK/USDT",
+      "decision": "BUY",
+      "confidence": 0.7892,
+      "price": 0.1364
+    },
+    {
+      "symbol": "WIF/USDT",
+      "decision": "BUY",
+      "confidence": 0.7628,
+      "price": 0.383
+    },
+    {
+      "symbol": "ETHFI/USDT",
+      "decision": "BUY",
+      "confidence": 0.616,
+      "price": 0.518
+    },
+    {
+      "symbol": "ENA/USDT",
+      "decision": "BUY",
+      "confidence": 0.8226,
+      "price": 0.3152
+    },
+    {
+      "symbol": "W/USDT",
+      "decision": "SELL",
+      "confidence": 0.8947,
+      "price": 0.0864
+    },
+    {
+      "symbol": "TAO/USDT",
+      "decision": "BUY",
+      "confidence": 0.5338,
+      "price": 216.2
+    },
+    {
+      "symbol": "RENDER/USDT",
+      "decision": "BUY",
+      "confidence": 0.5283,
+      "price": 3.238
+    },
+    {
+      "symbol": "TON/USDT",
+      "decision": "SELL",
+      "confidence": 0.6023,
+      "price": 3.496
+    },
+    {
+      "symbol": "IO/USDT",
+      "decision": "BUY",
+      "confidence": 0.751,
+      "price": 0.642
+    },
+    {
+      "symbol": "ZRO/USDT",
+      "decision": "BUY",
+      "confidence": 0.6608,
+      "price": 2.967
+    },
+    {
+      "symbol": "REZ/USDT",
+      "decision": "BUY",
+      "confidence": 0.689,
+      "price": 0.01718
+    },
+    {
+      "symbol": "POL/USDT",
+      "decision": "BUY",
+      "confidence": 0.7698,
+      "price": 0.19
+    },
+    {
+      "symbol": "NEIRO/USDT",
+      "decision": "BUY",
+      "confidence": 0.8948,
+      "price": 0.00017717
+    },
+    {
+      "symbol": "TIA/USDT",
+      "decision": "BUY",
+      "confidence": 0.5063,
+      "price": 2.809
+    }
+  ]
+}
