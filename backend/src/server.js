@@ -34,6 +34,11 @@ app.use((req, res, next) => {
   next();
 });
 
+// Пример маршрута для /api
+app.get('/api', (req, res) => {
+  res.json({ message: 'API is working' });  // Просто возвращает сообщение
+});
+
 
 
 const PORT = process.env.PORT || 3001; // Измените 3000 на другой порт, например 3001
