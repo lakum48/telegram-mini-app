@@ -1,56 +1,64 @@
 ﻿import pandas as pd
-from config import config
-from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime, timedelta
 import time
+import ccxt
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from tqdm import tqdm
+from config import config
 
 class DataCollector:
     def __init__(self):
         self.exchange = config.exchange
-        self.retry_count = 3
-        self.delay = 1  # Задержка между попытками
+        self.max_workers = 10  # Увеличенное число потоков
+        self.request_delay = 0.1
 
-    def fetch_ohlcv(self, symbol, timeframe='1h', limit=100):
-        """Сбор данных для одной пары"""
-        for i in range(self.retry_count):
+    def fetch_ohlcv(self, symbol, timeframe, limit):
+        """Оптимизированный запрос данных"""
+        for attempt in range(3):
             try:
-                data = self.exchange.fetch_ohlcv(
-                    symbol,
-                    timeframe=timeframe,
-                    limit=limit
-                )
-                if data:
-                    df = pd.DataFrame(data, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
-                    df['symbol'] = symbol
-                    df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
-                    return df
+                data = self.exchange.fetch_ohlcv(symbol, timeframe, limit=limit)
+                if not data:
+                    return pd.DataFrame()
+                    
+                df = pd.DataFrame(data, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
+                df['symbol'] = symbol
+                df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
+                return df
+                
             except Exception as e:
-                print(f"Ошибка для {symbol}: {str(e)}")
-                if i < self.retry_count - 1:
-                    time.sleep(self.delay)
+                time.sleep(1)
         return pd.DataFrame()
 
-    def collect_data(self, timeframe='1h', limit=100):
-        """Параллельный сбор данных"""
-        all_data = []
-        with ThreadPoolExecutor(max_workers=10) as executor:
-            futures = {executor.submit(self.fetch_ohlcv, symbol, timeframe, limit): symbol 
-                      for symbol in config.coins}
-            
-            for future in futures:
-                symbol = futures[future]
-                try:
-                    result = future.result()
-                    if not result.empty:
-                        all_data.append(result)
-                        print(f"Собрано {len(result)} строк для {symbol}")
-                    else:
-                        print(f"Предупреждение: Нет данных для {symbol}")
-                except Exception as e:
-                    print(f"Ошибка сбора данных для {symbol}: {str(e)}")
+    def collect_data(self, timeframe='1h', limit=None):
+        """Сбор данных с повторными попытками"""
+        limit = limit or config.HISTORY_LIMIT
+        successful = 0
         
-        if not all_data:
-            print("Ошибка: Не удалось собрать данные ни для одной пары")
-            return pd.DataFrame()
+        with ThreadPoolExecutor(max_workers=15) as executor:  # Увеличили потоки
+            futures = {executor.submit(
+                self._fetch_with_retry,  # Новая функция с повторами
+                symbol, 
+                timeframe, 
+                limit
+            ): symbol for symbol in config.COINS}
             
-        return pd.concat(all_data).reset_index(drop=True)
+            results = []
+            for future in tqdm(as_completed(futures), total=len(futures)):
+                if not future.result().empty:
+                    successful += 1
+                    results.append(future.result())
+                    
+        print(f"\n✅ Собрано данных для {successful}/{len(config.COINS)} монет")
+        return pd.concat(results) if results else pd.DataFrame()
+
+    def _fetch_with_retry(self, symbol, timeframe, limit, max_retries=5):
+        """Повторные попытки с экспоненциальной задержкой"""
+        for attempt in range(max_retries):
+            try:
+                data = self.exchange.fetch_ohlcv(symbol, timeframe, limit=limit)
+                df = pd.DataFrame(data, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
+                df['symbol'] = symbol
+                return df
+            except Exception as e:
+                sleep_time = 2 ** attempt
+                time.sleep(sleep_time)
+        return pd.DataFrame()

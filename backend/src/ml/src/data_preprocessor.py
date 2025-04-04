@@ -1,6 +1,5 @@
 ﻿from config import config
 from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
 import pandas as pd
 import logging
 
@@ -8,10 +7,11 @@ logger = logging.getLogger(__name__)
 
 class DataPreprocessor:
     def __init__(self):
-        self.scalers = {}
-        self.min_samples = 50  # Минимум 50 наблюдений
-        
-    def prepare(self, df):
+        self.scalers = {}  # Для хранения скалеров по символам
+        self.min_samples = 50
+
+    def prepare(self, df: pd.DataFrame) -> dict:
+        """Для обучения: включает генерацию target и разделение на train/test."""
         processed = {}
         for symbol in df['symbol'].unique():
             symbol_df = df[df['symbol'] == symbol].copy()
@@ -57,5 +57,34 @@ class DataPreprocessor:
             except Exception as e:
                 logger.error(f"Ошибка обработки {symbol}: {str(e)}")
                 continue
-                
         return processed
+
+    def transform(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Для прогнозирования: только очистка и нормализация."""
+        try:
+            cleaned_data = []
+            for symbol in df['symbol'].unique():
+                symbol_df = df[df['symbol'] == symbol].copy()
+                
+                # 1. Очистка данных
+                symbol_df = self._clean_data(symbol_df)
+                
+                # 2. Нормализация (если скалер уже обучен)
+                if symbol in self.scalers:
+                    X = symbol_df[config.FEATURES]
+                    X_scaled = self.scalers[symbol].transform(X)
+                    symbol_df[config.FEATURES] = X_scaled
+                
+                cleaned_data.append(symbol_df)
+            
+            return pd.concat(cleaned_data)
+        except Exception as e:
+            logger.error(f"Ошибка transform: {str(e)}")
+            return pd.DataFrame()
+
+    def _clean_data(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Общая очистка: удаление выбросов и пропусков."""
+        df = df.dropna().drop_duplicates()
+        df = df[(df['close'] > df['close'].quantile(0.01)) 
+              & (df['close'] < df['close'].quantile(0.99))]
+        return df
