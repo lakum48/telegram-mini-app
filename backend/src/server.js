@@ -12,7 +12,9 @@ const allowedOrigins = [
   'https://your-mini-app-domain.com',
   'http://localhost:55120',
   'https://fallaciously-eloquent-tenpounder.cloudpub.ru',
-  'http://195.133.48.208' // ваш домен
+  'http://195.133.48.208',
+  'http://195.133.48.208'
+   // ваш домен
   
 ];
 
