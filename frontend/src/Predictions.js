@@ -49,7 +49,7 @@ function Predictions() {
     
     try {
       // Отправляем данные на сервер
-      const response = await fetch('https://ваш-сервер.com/api/predict', {
+      const response = await fetch('https://195.133.48.208/api/predict', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
