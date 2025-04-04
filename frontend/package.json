@@ -5,11 +5,10 @@
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.21.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4",
-    "axios": "^0.21.1"  
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -36,19 +35,20 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.16.5",
+    "@babel/preset-react": "^7.16.5",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
+    "babel-jest": "^27.5.1",
     "jest": "^27.5.1",
-    "babel-jest": "^27.5.1", 
-    "@babel/preset-env": "^7.16.5", 
-    "@babel/preset-react": "^7.16.5" 
+    "react-scripts": "^5.0.1"
   },
   "jest": {
     "transformIgnorePatterns": [
-      "/node_modules/(?!axios)" 
+      "/node_modules/(?!axios)"
     ],
     "transform": {
-      "^.+\\.(js|jsx)$": "babel-jest" 
+      "^.+\\.(js|jsx)$": "babel-jest"
     }
   }
 }

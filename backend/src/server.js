@@ -11,7 +11,9 @@ const allowedOrigins = [
   'https://t.me',
   'https://your-mini-app-domain.com',
   'http://localhost:55120',
-  'https://fallaciously-eloquent-tenpounder.cloudpub.ru' // ваш домен
+  'https://fallaciously-eloquent-tenpounder.cloudpub.ru',
+  'http://195.133.48.208' // ваш домен
+  
 ];
 
 
