@@ -12,14 +12,14 @@ bot.on('message', async (msg) => {
     await bot.sendMessage(chatId, 'Добро пожаловать в чат поддержки!', {
       reply_markup: {
         inline_keyboard: [
-          [{text: 'Открыть чат', web_app: {url: 'https://ваш-сайт.ru'}}]
+          [{text: 'Открыть чат', web_app: {url: 'http://195.133.48.208:3000/'}}]
         ]
       }
     });
   }
 });
 
-// Обработка данных из WebApp
+// Обработка данных из WebApvp
 bot.on('web_app_data', async (msg) => {
   const data = JSON.parse(msg.web_app_data.data);
   

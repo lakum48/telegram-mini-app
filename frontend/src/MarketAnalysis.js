@@ -21,7 +21,7 @@ function MarketAnalysis() {
         tgWebApp.current.expand();
       });
     }
-  }, []);
+  }, [tgWebApp]);
 
   // Начальное сообщение только от поддержки
   const initialMessages = [
@@ -36,7 +36,7 @@ function MarketAnalysis() {
   // Инициализация чата
   useEffect(() => {
     setMessages(initialMessages);
-  }, []);
+  }, [initialMessages]);
 
   // Прокрутка к последнему сообщению
   useEffect(() => {

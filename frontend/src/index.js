@@ -5,7 +5,6 @@ import App from './App';
 // Инициализация Telegram Web Apps API
 const tg = window.Telegram.WebApp;
 
-const initData = tg.initData;
 
 // Настройка API URL (используем переменные окружения для гибкости)
 const apiUrl = process.env.REACT_APP_API_URL || 'http://195.133.48.208/api/';
